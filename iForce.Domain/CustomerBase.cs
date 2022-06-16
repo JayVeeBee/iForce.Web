@@ -20,7 +20,7 @@ namespace iForce.Domain
             }
         }
 
-        public void SetDatesLocalIfUnspecified()
+        public virtual void SetDatesLocalIfUnspecified()
         {
             DateOfBirth = DateOfBirth.SetLocalIfUnspecified();
         }

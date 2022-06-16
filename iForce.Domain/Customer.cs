@@ -6,6 +6,6 @@ namespace iForce.Domain
     {
         [Key]
         public int CustomerId { get; set; }
-        public List<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
+        public virtual ICollection<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
     }
 }
