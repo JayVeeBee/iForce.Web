@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using iForce.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace iForce.App
 {
@@ -29,15 +24,11 @@ namespace iForce.App
             {
                 query = from q in query where q.DateOfBirth <= filter.MaxDateOfBirth.Value select q;
             }
-            var customers = query.ToList();
             if (filter.IncludeVehicles)
             {
-                foreach (var customer in customers)
-                {
-                    customer.Vehicles = (from v in _context.Vehicles where v.CustomerId == customer.CustomerId select v).ToList();
-                }
+                query = query.Include(c => c.Vehicles);
             }
-            return customers;
+            return query.ToList();
         }
 
         public int Create(CustomerBase customer)
